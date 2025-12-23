@@ -4,435 +4,147 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QueryBot | 키워드 기반 데스크톱 비서</title>
-  <meta name="description" content="QueryBot은 키워드 기반으로 질문과 답변을 정리하는 개인용 데스크톱 비서입니다." />
 
   <style>
-    :root{
-      --bg1:#f7fbff;
-      --bg2:#eef3ff;
-      --ink:#0f172a;
-      --muted:#475569;
-      --line:rgba(15, 23, 42, .10);
-
-      --card:rgba(255,255,255,.72);
-      --card2:rgba(255,255,255,.55);
-
-      --shadow: 0 14px 40px rgba(2, 6, 23, .10);
-      --shadow2: 0 10px 26px rgba(2, 6, 23, .08);
-
-      --radius: 22px;
-      --radius2: 18px;
-
-      --accent:#3b82f6;
-      --accent2:#22d3ee;
-      --btn:#2563eb;
-      --btn2:#0ea5e9;
+    * {
+      box-sizing: border-box;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      color:var(--ink);
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-      background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(34,211,238,.28), transparent 55%),
-        radial-gradient(900px 520px at 85% 18%, rgba(59,130,246,.25), transparent 55%),
-        radial-gradient(900px 520px at 60% 90%, rgba(167,139,250,.20), transparent 60%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      overflow-x:hidden;
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      background: linear-gradient(180deg, #f7fbff, #eef3ff);
+      color: #0f172a;
     }
 
-    a{color:inherit; text-decoration:none}
-    .container{width:min(1100px, calc(100% - 40px)); margin:0 auto}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-    /* Top Nav */
-    .navWrap{
-      position:sticky; top:0; z-index:50;
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* NAV */
+    .navWrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
       backdrop-filter: blur(10px);
-      background: rgba(247, 251, 255, .70);
-      border-bottom: 1px solid rgba(15,23,42,.06);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800; letter-spacing:-.02em;
-    }
-    .brandDot{
-      width:12px; height:12px; border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, var(--accent2), var(--accent));
-      box-shadow: 0 0 0 6px rgba(34,211,238,.18);
-      flex:0 0 auto;
-    }
-    .brandName{font-size:18px}
-    .navLinks{
-      display:flex; gap:18px; align-items:center;
-      font-weight:600;
-      color: rgba(15,23,42,.72);
-    }
-    .navLinks a{
-      padding:10px 10px;
-      border-radius:999px;
-      transition: .18s ease;
-    }
-    .navLinks a:hover{
-      background: rgba(255,255,255,.55);
-      color: rgba(15,23,42,.92);
-    }
-    .navBtn{
-      padding:10px 14px;
-      border-radius:999px;
-      background: rgba(37,99,235,.10);
-      color: #1d4ed8;
-      font-weight:800;
-      border:1px solid rgba(37,99,235,.20);
-      transition:.18s ease;
-    }
-    .navBtn:hover{
-      background: rgba(37,99,235,.14);
-      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.75);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.1);
     }
 
-    /* Hero */
-    .hero{
-      padding:56px 0 26px;
-    }
-    .heroCard{
-      border-radius: calc(var(--radius) + 8px);
-      background:
-        radial-gradient(900px 420px at 30% 20%, rgba(34,211,238,.22), transparent 60%),
-        radial-gradient(800px 420px at 70% 10%, rgba(59,130,246,.20), transparent 60%),
-        rgba(255,255,255,.45);
-      border:1px solid rgba(15,23,42,.08);
-      box-shadow: var(--shadow);
-      padding:44px 30px 28px;
-      position:relative;
-      overflow:hidden;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:22px;
-      align-items:center;
-    }
-    .kicker{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(15,23,42,.10);
-      background: rgba(255,255,255,.55);
-      font-weight:700;
-      color: rgba(15,23,42,.70);
-      width:max-content;
-    }
-    .kicker i{
-      width:8px; height:8px; border-radius:999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(59,130,246,.12);
-      display:inline-block;
-    }
-    h1{
-      margin:14px 0 10px;
-      font-size: clamp(32px, 4vw, 48px);
-      line-height:1.12;
-      letter-spacing:-.04em;
-    }
-    .sub{
-      margin:0;
-      color: rgba(15,23,42,.68);
-      font-size: 15.5px;
-      line-height:1.7;
-      max-width: 56ch;
-    }
-    .heroActions{
-      margin-top:18px;
-      display:flex; gap:12px; flex-wrap:wrap;
-      align-items:center;
-    }
-    .btnPrimary{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:12px 16px;
-      border-radius: 14px;
-      color:#fff;
-      font-weight:900;
-      background: linear-gradient(90deg, var(--btn), var(--btn2));
-      box-shadow: 0 14px 30px rgba(37,99,235,.24);
-      border:1px solid rgba(37,99,235,.10);
-      transition:.18s ease;
-    }
-    .btnPrimary:hover{transform: translateY(-1px)}
-    .btnGhost{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:12px 16px;
-      border-radius: 14px;
-      font-weight:900;
-      background: rgba(255,255,255,.55);
-      border:1px solid rgba(15,23,42,.10);
-      color: rgba(15,23,42,.78);
-      transition:.18s ease;
-    }
-    .btnGhost:hover{transform: translateY(-1px)}
-    .heroMeta{
-      margin-top:12px;
-      color: rgba(15,23,42,.55);
-      font-size: 12.8px;
-      line-height:1.6;
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
     }
 
-    /* right visual */
-    .orbWrap{
-      display:flex;
-      justify-content:center;
-      align-items:center;
+    .brand {
+      font-weight: 900;
+      font-size: 18px;
     }
-    .orb{
-      width: 240px; height: 240px;
+
+    .navLinks {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-weight: 700;
+    }
+
+    .navLinks a {
+      padding: 8px 12px;
       border-radius: 999px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(34,211,238,.95), transparent 42%),
-        radial-gradient(circle at 65% 25%, rgba(59,130,246,.85), transparent 45%),
-        radial-gradient(circle at 55% 70%, rgba(167,139,250,.70), transparent 55%),
-        rgba(255,255,255,.22);
-      border:1px solid rgba(255,255,255,.45);
-      box-shadow: 0 18px 50px rgba(2,6,23,.15);
-      position:relative;
-      overflow:hidden;
-    }
-    .orb:before{
-      content:"";
-      position:absolute; inset:-30px;
-      background:
-        radial-gradient(180px 120px at 35% 30%, rgba(255,255,255,.55), transparent 60%),
-        radial-gradient(220px 140px at 70% 60%, rgba(255,255,255,.26), transparent 65%);
-      filter: blur(2px);
-      transform: rotate(8deg);
-    }
-    .orb:after{
-      content:"";
-      position:absolute; left:50%; top:50%;
-      width: 320px; height: 320px;
-      transform: translate(-50%,-50%);
-      border-radius:999px;
-      border:1px dashed rgba(255,255,255,.55);
-      opacity:.35;
+      transition: 0.2s;
     }
 
-    /* Sections */
-    section{padding:44px 0}
-    .sectionTitle{
-      font-size: 22px;
-      letter-spacing:-.03em;
-      margin:0 0 10px;
-    }
-    .sectionLead{
-      margin:0 0 22px;
-      color: rgba(15,23,42,.66);
-      line-height:1.75;
-      max-width: 70ch;
+    .navLinks a:hover {
+      background: rgba(0, 0, 0, 0.05);
     }
 
-    .panel{
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.55);
-      border:1px solid rgba(15,23,42,.08);
-      box-shadow: var(--shadow2);
-      padding: 26px;
-    }
-    .split{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    .mock{
-      border-radius: var(--radius2);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.60), rgba(255,255,255,.35)),
-        radial-gradient(600px 240px at 20% 30%, rgba(34,211,238,.20), transparent 60%),
-        radial-gradient(600px 240px at 80% 70%, rgba(59,130,246,.16), transparent 60%);
-      border:1px solid rgba(15,23,42,.08);
-      height: 100%;
-      min-height: 260px;
-      padding: 18px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .mockRow{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .pill{
-      padding:8px 10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.65);
-      border:1px solid rgba(15,23,42,.08);
-      font-weight:800;
-      font-size: 12.5px;
-      color: rgba(15,23,42,.70);
-      width:max-content;
-    }
-    .bubble{
-      padding:12px 12px;
-      border-radius: 16px;
-      border:1px solid rgba(15,23,42,.08);
-      background: rgba(255,255,255,.72);
-      color: rgba(15,23,42,.80);
-      line-height:1.55;
-      font-weight:650;
-      box-shadow: 0 12px 20px rgba(2,6,23,.06);
-    }
-    .bubble.muted{
-      background: rgba(255,255,255,.50);
-      color: rgba(15,23,42,.62);
-      font-weight:650;
+    .navBtn {
+      background: #2563eb;
+      color: white;
     }
 
-    .para{
-      margin:0 0 12px;
-      color: rgba(15,23,42,.78);
-      line-height:1.85;
-    }
-    .para:last-child{margin-bottom:0}
-    .highlight{
-      font-weight:900;
-      background: linear-gradient(90deg, rgba(34,211,238,.22), rgba(59,130,246,.18));
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,.06);
+    /* HERO */
+    header {
+      padding: 60px 0 40px;
     }
 
-    /* Feature cards */
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-      margin-top: 18px;
+    h1 {
+      font-size: 42px;
+      margin-bottom: 12px;
     }
-    .card{
-      border-radius: var(--radius2);
-      background: var(--card);
-      border: 1px solid rgba(15,23,42,.08);
-      padding: 18px;
-      box-shadow: 0 12px 24px rgba(2,6,23,.06);
+
+    .sub {
+      color: #475569;
+      line-height: 1.7;
+      max-width: 600px;
     }
-    .cardTop{
-      display:flex; align-items:center; gap:10px;
+
+    .heroActions {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .btnPrimary {
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, #2563eb, #0ea5e9);
+      color: white;
+      font-weight: 900;
+    }
+
+    .btnGhost {
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.15);
+      background: white;
+      font-weight: 800;
+    }
+
+    /* SCENE SYSTEM */
+    .scene {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      padding: 50px 0;
+    }
+
+    .scene.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-size: 26px;
       margin-bottom: 10px;
     }
-    .icon{
-      width:38px; height:38px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(34,211,238,.35), rgba(59,130,246,.28));
-      border: 1px solid rgba(15,23,42,.08);
-      display:flex; align-items:center; justify-content:center;
-      font-weight: 900;
-      color: rgba(15,23,42,.72);
-    }
-    .cardTitle{
-      margin:0;
-      font-size: 15.5px;
-      letter-spacing:-.02em;
-    }
-    .cardDesc{
-      margin:0;
-      color: rgba(15,23,42,.66);
-      line-height:1.7;
-      font-size: 13.6px;
+
+    .panel {
+      background: rgba(255,255,255,.7);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.08);
     }
 
-    .detail{
-      margin-top: 14px;
-      border-radius: var(--radius2);
-      background: rgba(255,255,255,.50);
-      border:1px solid rgba(15,23,42,.08);
-      padding: 18px;
-      color: rgba(15,23,42,.78);
-      line-height:1.85;
+    ul {
+      line-height: 2;
     }
 
-    /* Download */
-    .downloadGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      align-items:stretch;
-      margin-top: 18px;
-    }
-    .dlBox{
-      border-radius: var(--radius2);
-      background: rgba(255,255,255,.60);
-      border:1px solid rgba(15,23,42,.08);
-      padding: 18px;
-      box-shadow: 0 12px 24px rgba(2,6,23,.06);
-    }
-    .dlTitle{
-      font-size: 16px;
-      margin:0 0 6px;
-      letter-spacing:-.02em;
-      font-weight: 900;
-    }
-    .dlMeta{
-      margin:0;
-      color: rgba(15,23,42,.66);
-      line-height:1.7;
-      font-size: 13.6px;
-    }
-    .dlList{
-      margin:12px 0 0;
-      padding-left: 18px;
-      color: rgba(15,23,42,.74);
-      line-height: 1.9;
-      font-size: 13.6px;
-    }
-
-    /* Recommended */
-    .bullets{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      line-height: 2.0;
-      color: rgba(15,23,42,.78);
-      font-size: 14px;
-    }
-
-    /* Footer */
-    footer{
-      padding: 30px 0 46px;
-      color: rgba(15,23,42,.55);
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid rgba(0,0,0,.1);
       font-size: 13px;
-    }
-    .foot{
-      border-top:1px solid rgba(15,23,42,.08);
-      padding-top: 18px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    .chip{
-      padding:8px 10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.55);
-      border:1px solid rgba(15,23,42,.08);
-      color: rgba(15,23,42,.62);
-      font-weight: 750;
-      width:max-content;
-    }
-
-    /* Responsive */
-    @media (max-width: 920px){
-      .heroGrid{grid-template-columns: 1fr; text-align:left}
-      .orbWrap{justify-content:flex-start}
-      .orb{width: 220px; height:220px}
-      .split{grid-template-columns: 1fr}
-      .cards{grid-template-columns: 1fr}
-      .downloadGrid{grid-template-columns: 1fr}
-      .navLinks{gap:6px}
-      .navLinks a{padding:10px 8px}
+      color: #475569;
     }
   </style>
 </head>
@@ -443,225 +155,108 @@
   <div class="navWrap">
     <div class="container">
       <div class="nav">
-        <div class="brand">
-          <span class="brandDot"></span>
-          <span class="brandName">QueryBot</span>
-        </div>
-
+        <div class="brand">QueryBot</div>
         <div class="navLinks">
-          <a href="#about">QueryBot이란?</a>
-          <a href="#download">다운로드</a>
-          <a href="#features">기능</a>
-          <a href="#recommend">추천 대상</a>
-          <a class="navBtn" href="#download">다운로드</a>
+          <a href="#" data-scene="about">QueryBot이란?</a>
+          <a href="#" data-scene="features">기능</a>
+          <a href="#" data-scene="recommend">추천 대상</a>
+          <a href="#" data-scene="download" class="navBtn">다운로드</a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- HERO -->
-  <header class="hero">
-    <div class="container">
-      <div class="heroCard">
-        <div class="heroGrid">
-          <div>
-            <div class="kicker"><i></i> 개인용 데스크톱 도구</div>
-            <h1>키워드 기반 데스크톱 비서, QueryBot</h1>
-            <p class="sub">
-              QueryBot은 키워드 기반으로 질문과 답변을 정리하는 개인용 데스크톱 비서입니다.
-              반복되는 질문을 빠르게 처리하고, 필요한 정보를 깔끔하게 정리하는 데 집중합니다.
-            </p>
-
-            <div class="heroActions">
-              <!-- TODO: 아래 링크를 GitHub Releases의 .exe 링크로 바꾸면 됨 -->
-              <a class="btnPrimary" href="#download">QueryBot 다운로드</a>
-              <a class="btnGhost" href="#about">QueryBot이란?</a>
-            </div>
-
-            <div class="heroMeta">
-              Windows용 데스크톱 프로그램 · 개인 개발 프로젝트 · 업데이트 진행 중
-            </div>
-          </div>
-
-          <div class="orbWrap">
-            <div class="orb" aria-hidden="true"></div>
-          </div>
-        </div>
-      </div>
+  <header class="container">
+    <h1>키워드 기반 데스크톱 비서, QueryBot</h1>
+    <p class="sub">
+      QueryBot은 반복되는 질문과 정보를 키워드 기반으로 정리해주는
+      개인용 Windows 데스크톱 비서입니다.
+    </p>
+    <div class="heroActions">
+      <a href="#" data-scene="download" class="btnPrimary">다운로드</a>
+      <a href="#" data-scene="about" class="btnGhost">자세히 보기</a>
     </div>
   </header>
 
   <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <h2 class="sectionTitle">QueryBot이란?</h2>
-      <p class="sectionLead">
-        QueryBot은 키워드 기반으로 질문과 답변을 정리하는 개인용 데스크톱 비서입니다.
-        복잡한 기능보다 “빠르게 정리하고 바로 쓰는 경험”에 초점을 맞춥니다.
+  <section id="about" class="scene active">
+    <div class="container panel">
+      <h2>QueryBot이란?</h2>
+      <p>
+        QueryBot은 자주 반복되는 질문과 답변을 키워드 기반으로 정리해
+        빠르게 꺼내 쓸 수 있도록 설계된 개인용 데스크톱 도구입니다.
       </p>
-
-      <div class="panel split">
-        <!-- Left visual (간단한 UI 느낌 mock) -->
-        <div class="mock">
-          <div class="mockRow">
-            <span class="pill">입력</span>
-            <span class="pill">키워드 매칭</span>
-            <span class="pill">빠른 응답</span>
-          </div>
-          <div class="bubble">“QueryBot 다운로드는 어디서 해?”</div>
-          <div class="bubble muted">→ ‘다운로드’ 키워드를 기반으로 안내를 정리합니다.</div>
-          <div class="bubble">“키워드 추가는 어떻게 해?”</div>
-          <div class="bubble muted">→ 자주 쓰는 질문을 등록해서 반복 작업을 줄입니다.</div>
-        </div>
-
-        <!-- Right text -->
-        <div>
-          <p class="para">
-            일상에서 반복되는 질문이나 자주 찾게 되는 정보들을 매번 검색하거나 기억하는 일은
-            생각보다 많은 시간을 소모합니다.
-          </p>
-          <p class="para">
-            QueryBot은 이런 불편함을 줄이기 위해 <span class="highlight">키워드 기반 응답</span>을 중심으로 설계되었습니다.
-            질문을 입력하면, 미리 정의된 키워드에 따라 핵심을 정리한 답변을 빠르게 확인할 수 있습니다.
-          </p>
-          <p class="para">
-            이 도구는 대규모 서비스가 아니라, 개인이 직접 관리하고 활용하기 쉬운 “가벼운 데스크톱 비서”를 목표로 합니다.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DOWNLOAD -->
-  <section id="download">
-    <div class="container">
-      <h2 class="sectionTitle">다운로드</h2>
-      <p class="sectionLead">
-        QueryBot은 Windows 환경에서 실행되는 개인용 데스크톱 프로그램입니다.
-        아래 정보를 확인한 뒤 다운로드할 수 있습니다.
-      </p>
-
-      <div class="panel">
-        <div class="downloadGrid">
-          <div class="dlBox">
-            <p class="dlTitle">QueryBot v2.2</p>
-            <p class="dlMeta">Windows 10 / 11 지원 · 실행 파일(.exe)</p>
-            <ul class="dlList">
-              <li>별도 설치 없이 실행 가능</li>
-              <li>개인 프로젝트로 개발 중</li>
-              <li>업데이트 시 버전 표기 갱신</li>
-            </ul>
-          </div>
-
-          <div class="dlBox">
-            <p class="dlTitle">주의사항</p>
-            <p class="dlMeta">처음 실행 시 보안 경고가 뜰 수 있습니다.</p>
-            <ul class="dlList">
-              <li>정식 배포 전에는 일부 PC에서 SmartScreen 경고가 뜰 수 있음</li>
-              <li>항상 공식 배포 링크에서만 다운로드</li>
-              <li>문제 발생 시 피드백으로 알려주세요</li>
-            </ul>
-          </div>
-        </div>
-<div class="heroActions" style="margin-top:16px;">
-  <a
-    class="btnPrimary"
-    href="https://github.com/rladleh0729-source/rladleh0729.github.io/releases/download/v2.2/QueryBot.v2.2.exe"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    QueryBot 다운로드(.exe)
-  </a>
-  <a class="btnGhost" href="#features">기능 보기</a>
-</div>
-
-
-        <div class="heroMeta">
-          다운로드 링크는 GitHub Releases에 업로드한 파일 URL로 연결하면 가장 깔끔합니다.
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- FEATURES -->
-  <section id="features">
-    <div class="container">
-      <h2 class="sectionTitle">기능</h2>
-      <p class="sectionLead">
-        QueryBot은 “정리”에 집중합니다. 필요한 기능을 빠르게 꺼내 쓰는 흐름을 목표로 합니다.
-      </p>
-
-      <div class="panel">
-        <div class="cards">
-          <div class="card">
-            <div class="cardTop">
-              <div class="icon">K</div>
-              <h3 class="cardTitle">키워드 기반 응답</h3>
-            </div>
-            <p class="cardDesc">미리 정의된 키워드로 빠른 답변을 제공합니다.</p>
-          </div>
-
-          <div class="card">
-            <div class="cardTop">
-              <div class="icon">S</div>
-              <h3 class="cardTitle">선택형 답변 방식</h3>
-            </div>
-            <p class="cardDesc">상황에 따라 답변 방식을 선택해 사용할 수 있습니다.</p>
-          </div>
-
-          <div class="card">
-            <div class="cardTop">
-              <div class="icon">C</div>
-              <h3 class="cardTitle">개인 맞춤 설정</h3>
-            </div>
-            <p class="cardDesc">키워드와 응답을 자유롭게 추가·수정할 수 있습니다.</p>
-          </div>
-        </div>
-
-        <!-- 선택한 카드(1번) 상세 설명 -->
-        <div class="detail">
-          <strong>키워드 기반 응답</strong>은 QueryBot의 핵심 기능입니다.<br />
-          자주 사용하는 질문이나 개념을 키워드로 미리 등록해두면, 입력된 질문에 따라 즉시 대응하는 답변을 확인할 수 있습니다.<br />
-          반복 작업을 줄이고, 일관된 응답을 유지하는 데 도움이 됩니다.
-        </div>
-      </div>
+  <section id="features" class="scene">
+    <div class="container panel">
+      <h2>기능</h2>
+      <ul>
+        <li>키워드 기반 자동 응답</li>
+        <li>개인 맞춤 질문/답변 관리</li>
+        <li>가벼운 데스크톱 실행 구조</li>
+      </ul>
     </div>
   </section>
 
   <!-- RECOMMEND -->
-  <section id="recommend">
-    <div class="container">
-      <h2 class="sectionTitle">이런 분께 추천합니다</h2>
-      <p class="sectionLead">
-        QueryBot은 복잡한 기능보다 “반복을 줄이고 정리하는 경험”을 원하는 사람에게 잘 맞습니다.
-      </p>
+  <section id="recommend" class="scene">
+    <div class="container panel">
+      <h2>이런 분께 추천합니다</h2>
+      <ul>
+        <li>반복 질문이 많은 분</li>
+        <li>정리된 개인 비서를 원하는 분</li>
+        <li>복잡한 기능 없이 빠른 도구를 찾는 분</li>
+      </ul>
+    </div>
+  </section>
 
-      <div class="panel">
-        <ul class="bullets">
-          <li>반복되는 질문을 정리하고 싶은 분</li>
-          <li>간단한 데스크톱 비서를 찾는 분</li>
-          <li>키워드 기반으로 정보를 관리하고 싶은 분</li>
-          <li>복잡한 기능보다 직관적인 도구를 선호하는 분</li>
-        </ul>
-      </div>
+  <!-- DOWNLOAD -->
+  <section id="download" class="scene">
+    <div class="container panel">
+      <h2>다운로드</h2>
+      <p>Windows 10 / 11 지원 · 실행 파일(.exe)</p>
+      <br />
+      <a
+        class="btnPrimary"
+        href="https://github.com/rladleh0729-source/rladleh0729.github.io/releases/download/v2.2/QueryBot.v2.2.exe"
+      >
+        QueryBot v2.2 다운로드
+      </a>
+      <p style="margin-top:12px; font-size:13px; color:#475569;">
+        SmartScreen 경고가 뜰 수 있으며, 개인 개발 프로젝트입니다.
+      </p>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="foot">
-        <div>
-          <div style="font-weight:900; color: rgba(15,23,42,.70);">QueryBot</div>
-          <div style="margin-top:6px;">© 2025 · 개인 개발 프로젝트</div>
-        </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <div class="chip">도메인: querybot.kr</div>
-          <div class="chip">GitHub Pages</div>
-        </div>
-      </div>
+      © 2025 QueryBot · GitHub Pages · querybot.kr
     </div>
   </footer>
+
+  <!-- SCENE SCRIPT -->
+  <script>
+    const links = document.querySelectorAll("[data-scene]");
+    const scenes = document.querySelectorAll(".scene");
+
+    links.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const target = link.dataset.scene;
+
+        scenes.forEach(scene => {
+          scene.classList.remove("active");
+        });
+
+        document.getElementById(target).classList.add("active");
+      });
+    });
+  </script>
 
 </body>
 </html>

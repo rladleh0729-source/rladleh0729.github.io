@@ -6,9 +6,7 @@
   <title>QueryBot | 키워드 기반 데스크톱 비서</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -17,10 +15,7 @@
       color: #0f172a;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
 
     .container {
       width: min(1100px, calc(100% - 40px));
@@ -44,10 +39,7 @@
       padding: 14px 0;
     }
 
-    .brand {
-      font-weight: 900;
-      font-size: 18px;
-    }
+    .brand { font-weight: 900; font-size: 18px; }
 
     .navLinks {
       display: flex;
@@ -62,9 +54,7 @@
       transition: 0.2s;
     }
 
-    .navLinks a:hover {
-      background: rgba(0, 0, 0, 0.05);
-    }
+    .navLinks a:hover { background: rgba(0, 0, 0, 0.05); }
 
     .navBtn {
       background: #2563eb;
@@ -72,14 +62,9 @@
     }
 
     /* HERO */
-    header {
-      padding: 60px 0 40px;
-    }
+    header { padding: 60px 0 40px; }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
+    h1 { font-size: 42px; margin-bottom: 12px; }
 
     .sub {
       color: #475569;
@@ -109,7 +94,7 @@
       font-weight: 800;
     }
 
-    /* SCENE SYSTEM */
+    /* SCENE */
     .scene {
       display: none;
       opacity: 0;
@@ -124,10 +109,7 @@
       transform: translateY(0);
     }
 
-    h2 {
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
+    h2 { font-size: 26px; margin-bottom: 10px; }
 
     .panel {
       background: rgba(255,255,255,.7);
@@ -136,8 +118,28 @@
       box-shadow: 0 14px 30px rgba(0,0,0,.08);
     }
 
-    ul {
-      line-height: 2;
+    ul { line-height: 2; }
+
+    /* DOWNLOAD LIST */
+    .versionList {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .versionItem {
+      padding: 16px;
+      border-radius: 14px;
+      background: white;
+      border: 1px solid rgba(0,0,0,.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .versionItem span {
+      font-weight: 800;
     }
 
     footer {
@@ -218,16 +220,27 @@
   <section id="download" class="scene">
     <div class="container panel">
       <h2>다운로드</h2>
-      <p>Windows 10 / 11 지원 · 실행 파일(.exe)</p>
-      <br />
-      <a
-        class="btnPrimary"
-        href="https://github.com/rladleh0729-source/rladleh0729.github.io/releases/download/v2.2/QueryBot.v2.2.exe"
-      >
-        QueryBot v2.2 다운로드
-      </a>
+      <p>파일을 업로드하면 자동으로 다운로드가 활성화됩니다.</p>
+
+      <div class="versionList">
+        <div class="versionItem">
+          <span>QueryBot v2.2</span>
+          <a class="btnPrimary" href="downloads/QueryBot_v2.2.exe">다운로드</a>
+        </div>
+
+        <div class="versionItem">
+          <span>QueryBot v2.1</span>
+          <a class="btnGhost" href="downloads/QueryBot_v2.1.exe">다운로드</a>
+        </div>
+
+        <div class="versionItem">
+          <span>QueryBot v1.7</span>
+          <a class="btnGhost" href="downloads/QueryBot_v1.7.exe">다운로드</a>
+        </div>
+      </div>
+
       <p style="margin-top:12px; font-size:13px; color:#475569;">
-        SmartScreen 경고가 뜰 수 있으며, 개인 개발 프로젝트입니다.
+        SmartScreen 경고가 표시될 수 있습니다.
       </p>
     </div>
   </section>
@@ -235,11 +248,11 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      © 2025 QueryBot · GitHub Pages · querybot.kr
+      © 2025 QueryBot · GitHub Pages
     </div>
   </footer>
 
-  <!-- SCENE SCRIPT -->
+  <!-- SCRIPT -->
   <script>
     const links = document.querySelectorAll("[data-scene]");
     const scenes = document.querySelectorAll(".scene");
@@ -247,13 +260,8 @@
     links.forEach(link => {
       link.addEventListener("click", e => {
         e.preventDefault();
-        const target = link.dataset.scene;
-
-        scenes.forEach(scene => {
-          scene.classList.remove("active");
-        });
-
-        document.getElementById(target).classList.add("active");
+        scenes.forEach(scene => scene.classList.remove("active"));
+        document.getElementById(link.dataset.scene).classList.add("active");
       });
     });
   </script>

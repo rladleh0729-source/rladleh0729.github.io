@@ -3,412 +3,348 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChatChosim_3.0 | querybot.kr</title>
-  <meta name="description" content="개인적으로 개발 중인 한국어 AI 프로젝트 ChatChosim_3.0 소개 페이지입니다." />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
 
-    html {
-      scroll-behavior: smooth;
-    }
+  <title>ChatChosim | Windows용 개인 AI 데스크톱</title>
+  <meta name="description" content="ChatChosim은 한국어 중심의 Windows용 개인 AI 데스크톱 프로그램입니다. 질문, 정리, 요약, 작업 보조 기능을 제공하며, 이전 QueryBot 시리즈도 아카이브에서 다운로드할 수 있습니다." />
+  <meta name="keywords" content="ChatChosim, Windows AI, 개인 AI 데스크톱, 한국어 AI 프로그램, QueryBot, QueryBot 다운로드" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="ChatChosim" />
 
-    body {
-      margin: 0;
-      font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-      background: linear-gradient(180deg, #f7fbff 0%, #eef3ff 100%);
-      color: #1f2a44;
-      line-height: 1.7;
-    }
+  <meta property="og:title" content="ChatChosim | Windows용 개인 AI 데스크톱" />
+  <meta property="og:description" content="질문, 정리, 요약, 작업 보조를 한곳에서 다룰 수 있는 한국어 중심 데스크톱 프로그램" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://querybot.kr/" />
+  <meta property="og:site_name" content="ChatChosim" />
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(130, 153, 198, 0.18);
-    }
-
-    .header-inner {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      font-size: 1.22rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #183153;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    nav a {
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-weight: 700;
-      color: #36507a;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    nav a:hover {
-      background: rgba(99, 124, 173, 0.12);
-      transform: translateY(-1px);
-    }
-
-    .hero {
-      padding: 86px 0 60px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: #eaf2ff;
-      color: #31588f;
-      font-size: 0.92rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0 0 16px;
-      font-size: clamp(2.1rem, 4vw, 3.6rem);
-      line-height: 1.16;
-      letter-spacing: -0.03em;
-      color: #13263f;
-    }
-
-    .hero p {
-      margin: 0 0 28px;
-      font-size: 1.08rem;
-      color: #435673;
-      max-width: 650px;
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 20px;
-      border-radius: 14px;
-      font-weight: 800;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #7cb7ff 0%, #5f8eff 100%);
-      color: white;
-      box-shadow: 0 10px 24px rgba(95, 142, 255, 0.24);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(95, 142, 255, 0.28);
-    }
-
-    .btn-secondary {
-      background: white;
-      border: 1px solid #d8e3f6;
-      color: #2e4d77;
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-      background: #f8fbff;
-    }
-
-    .hero-note {
-      font-size: 0.95rem;
-      color: #5e6f88;
-    }
-
-    .hero-card {
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(148, 171, 215, 0.22);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: 0 20px 45px rgba(78, 104, 158, 0.10);
-    }
-
-    .hero-card h2 {
-      margin: 0 0 16px;
-      font-size: 1.2rem;
-      color: #1e3556;
-    }
-
-    .hero-card ul {
-      margin: 0;
-      padding-left: 18px;
-      color: #495d7b;
-    }
-
-    .hero-card li + li {
-      margin-top: 10px;
-    }
-
-    section {
-      padding: 30px 0 70px;
-    }
-
-    .section-title {
-      margin: 0 0 12px;
-      font-size: 2rem;
-      color: #17304f;
-      letter-spacing: -0.02em;
-    }
-
-    .section-desc {
-      margin: 0 0 28px;
-      color: #566983;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(148, 171, 215, 0.20);
-      border-radius: 22px;
-      padding: 24px;
-      box-shadow: 0 12px 30px rgba(78, 104, 158, 0.08);
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.1rem;
-      color: #1b3556;
-    }
-
-    .card p {
-      margin: 0;
-      color: #50647f;
-    }
-
-    .info-panel {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(148, 171, 215, 0.22);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 12px 30px rgba(78, 104, 158, 0.08);
-    }
-
-    .info-panel p {
-      margin: 0;
-      color: #4f627d;
-    }
-
-    .quick-links {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .quick-link {
-      display: block;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(148, 171, 215, 0.20);
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 12px 30px rgba(78, 104, 158, 0.08);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .quick-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 36px rgba(78, 104, 158, 0.12);
-    }
-
-    .quick-link strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #1a3556;
-      font-size: 1rem;
-    }
-
-    .quick-link span {
-      color: #56708f;
-      font-size: 0.96rem;
-    }
-
-    footer {
-      padding: 26px 0 40px;
-      color: #6b7c95;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 960px) {
-      .hero-grid,
-      .cards,
-      .quick-links {
-        grid-template-columns: 1fr;
-      }
-
-      .header-inner {
-        flex-direction: column;
-        justify-content: center;
-        padding: 14px 0;
-      }
-
-      nav {
-        justify-content: center;
-      }
-
-      .hero {
-        padding-top: 54px;
-      }
-    }
-  </style>
+  <link rel="canonical" href="https://querybot.kr/" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <div class="container header-inner">
-      <a href="/" class="brand">ChatChosim_3.0</a>
-      <nav>
-        <a href="/">홈</a>
-        <a href="/about">AI 소개</a>
-        <a href="/download">다운로드</a>
-        <a href="/guide">사용법</a>
-        <a href="/changelog">업데이트</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#home" class="brand">ChatChosim</a>
+
+      <nav class="nav">
+        <a href="#chatchosim">ChatChosim</a>
+        <a href="#features">기능</a>
+        <a href="#download">다운로드</a>
+        <a href="#archive">QueryBot 아카이브</a>
+        <a href="#faq">FAQ</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="home">
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <div class="badge">개인 개발 AI 프로젝트</div>
-          <h1>ChatChosim_3.0</h1>
-          <p>
-            ChatChosim_3.0은 개인적으로 개발 중인 한국어 AI 프로그램이다.
-            대화, 간단한 계산, 텍스트 처리 기능을 중심으로 조금씩 확장하고 있으며,
-            버전에 따라 지원 기능과 응답 품질은 달라질 수 있다.
+        <div class="hero-text">
+          <span class="eyebrow">Windows용 개인 AI 데스크톱</span>
+          <h1>ChatChosim</h1>
+          <p class="hero-subtitle">
+            질문, 정리, 요약, 작업 보조를 한곳에서 다룰 수 있는
+            한국어 중심 데스크톱 프로그램입니다.
           </p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="/download">다운로드</a>
-            <a class="btn btn-secondary" href="/about">자세히 보기</a>
+          <p class="hero-desc">
+            이전 QueryBot 시리즈의 흐름을 이어받아,
+            더 넓은 방향의 AI 데스크톱으로 확장되고 있습니다.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#download">ChatChosim 다운로드</a>
+            <a class="btn btn-secondary" href="#archive">QueryBot 아카이브 보기</a>
           </div>
-          <div class="hero-note">
-            과장된 성능 소개보다, 현재 구현된 기능과 개발 방향을 정직하게 정리하는 것을 목표로 한다.
+
+          <div class="hero-badges">
+            <span>한국어 중심</span>
+            <span>Windows 데스크톱</span>
+            <span>작업 보조</span>
+            <span>레거시 아카이브 지원</span>
           </div>
         </div>
 
         <div class="hero-card">
-          <h2>현재 사이트 방향</h2>
-          <ul>
-            <li>완성형 상용 서비스가 아니라 직접 만들고 개선하는 AI 프로젝트 소개</li>
-            <li>기능, 사용법, 업데이트 기록을 분리한 깔끔한 구조</li>
-            <li>다운로드와 안내 페이지를 따로 둔 정적 GitHub Pages 구성</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <h2 class="section-title">핵심 특징</h2>
-        <p class="section-desc">
-          지금 단계에서 과하게 넓히기보다, 실제로 설명 가능한 범위 중심으로 정리했다.
-        </p>
-
-        <div class="cards">
-          <div class="card">
-            <h3>대화 중심</h3>
-            <p>
-              기본적인 질문 응답과 텍스트 기반 상호작용을 중심으로 설계 중이다.
-            </p>
-          </div>
-          <div class="card">
-            <h3>간단한 계산</h3>
-            <p>
-              수식이나 계산성 입력에 대해 계산 기능을 연결하는 방향으로 확장하고 있다.
-            </p>
-          </div>
-          <div class="card">
-            <h3>지속적인 개선</h3>
-            <p>
-              버전마다 구조와 동작 방식이 바뀔 수 있으며, 점진적인 수정과 개선을 전제로 한다.
-            </p>
+          <div class="app-window">
+            <div class="app-topbar">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="app-body">
+              <div class="sidebar-mock">
+                <div class="sidebar-title">ChatChosim</div>
+                <div class="sidebar-item active">홈</div>
+                <div class="sidebar-item">대화</div>
+                <div class="sidebar-item">정리</div>
+                <div class="sidebar-item">다운로드</div>
+                <div class="sidebar-item">설정</div>
+              </div>
+              <div class="content-mock">
+                <div class="mock-card">
+                  <strong>질문</strong>
+                  <p>아이디어를 정리해줘</p>
+                </div>
+                <div class="mock-card highlight">
+                  <strong>응답</strong>
+                  <p>핵심을 요약하고 다음 작업 순서를 제안합니다.</p>
+                </div>
+                <div class="mock-row">
+                  <div class="mini-card">요약</div>
+                  <div class="mini-card">작업 보조</div>
+                  <div class="mini-card">정리</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section>
+    <section class="section" id="chatchosim">
       <div class="container">
-        <h2 class="section-title">프로젝트 안내</h2>
-        <div class="info-panel">
+        <div class="section-heading">
+          <h2>ChatChosim 소개</h2>
           <p>
-            이 사이트는 querybot.kr 도메인을 유지하면서, 앞으로는 챗봇보다는
-            개인 AI 프로젝트 소개와 배포를 중심으로 정리하는 형태로 운영한다.
-            자세한 설명은 AI 소개, 실제 파일은 다운로드, 실행 방법은 사용법, 변경 사항은 업데이트 페이지에 나누어 정리했다.
+            ChatChosim은 Windows 환경에서 사용할 수 있는 개인 AI 데스크톱 프로그램입니다.
+            대화, 정리, 요약, 작업 보조를 한곳에서 다룰 수 있도록 설계되었습니다.
           </p>
         </div>
 
-        <div class="quick-links">
-          <a class="quick-link" href="/about">
-            <strong>AI 소개</strong>
-            <span>프로젝트 목적과 방향, 현재 상태 정리</span>
-          </a>
-          <a class="quick-link" href="/download">
-            <strong>다운로드</strong>
-            <span>버전별 실행 파일과 안내 확인</span>
-          </a>
-          <a class="quick-link" href="/guide">
-            <strong>사용법</strong>
-            <span>실행 방법과 기본 사용 흐름 확인</span>
-          </a>
-          <a class="quick-link" href="/changelog">
-            <strong>업데이트</strong>
-            <span>버전별 변경 사항과 흐름 정리</span>
-          </a>
+        <div class="grid two">
+          <div class="info-card">
+            <h3>개인용 AI를 더 가깝게</h3>
+            <p>
+              복잡한 웹 서비스 대신, 내 PC에서 바로 접근할 수 있는
+              AI 환경을 목표로 합니다.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>정리와 대화를 하나로</h3>
+            <p>
+              질문과 응답만이 아니라 생각 정리와 작업 흐름까지
+              함께 다룰 수 있도록 구성합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <h2>핵심 기능</h2>
+          <p>
+            ChatChosim은 단순한 응답 도구를 넘어,
+            실제 작업 흐름에 연결되는 데스크톱 경험을 지향합니다.
+          </p>
+        </div>
+
+        <div class="grid four">
+          <div class="feature-card">
+            <h3>대화형 인터페이스</h3>
+            <p>
+              자연스러운 질문과 응답을 통해 필요한 정보를 빠르게 정리할 수 있습니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h3>작업 보조</h3>
+            <p>
+              아이디어 정리, 초안 작성, 간단한 구조화 작업을 한곳에서 처리할 수 있습니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h3>한국어 중심 환경</h3>
+            <p>
+              한국어 사용 흐름에 맞춘 데스크톱 경험을 중심으로 설계합니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h3>Windows 데스크톱 실행</h3>
+            <p>
+              브라우저 탭보다 더 직접적인 데스크톱 환경에서 실행하고 관리할 수 있습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="download">
+      <div class="container">
+        <div class="section-heading">
+          <h2>다운로드</h2>
+          <p>
+            현재 개발 중심은 ChatChosim입니다.
+            이전 QueryBot 시리즈는 아카이브에서 계속 제공됩니다.
+          </p>
+        </div>
+
+        <div class="download-main">
+          <div class="download-card featured">
+            <div class="tag">최신 프로젝트</div>
+            <h3>ChatChosim 최신 버전</h3>
+            <p>
+              현재 개발이 진행 중인 ChatChosim 버전입니다.
+              최신 기능과 방향은 이 프로젝트를 중심으로 이어집니다.
+            </p>
+
+            <ul class="download-list">
+              <li>플랫폼: Windows</li>
+              <li>분류: 개인 AI 데스크톱</li>
+              <li>상태: 최신 프로젝트</li>
+            </ul>
+
+            <a class="btn btn-primary" href="#" onclick="return false;">다운로드 준비 중</a>
+          </div>
+
+          <div class="download-card">
+            <div class="tag tag-gray">레거시 시리즈</div>
+            <h3>QueryBot 시리즈</h3>
+            <p>
+              QueryBot 시리즈는 v2.2를 마지막으로 종료되었습니다.
+              기존 버전은 보관용으로 계속 다운로드할 수 있습니다.
+            </p>
+
+            <ul class="download-list">
+              <li>마지막 버전: QueryBot v2.2</li>
+              <li>상태: 개발 종료</li>
+              <li>제공 형태: 아카이브 다운로드</li>
+            </ul>
+
+            <a class="btn btn-secondary" href="#archive">아카이브 보기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="archive">
+      <div class="container">
+        <div class="section-heading">
+          <h2>QueryBot 아카이브</h2>
+          <p>
+            QueryBot은 키워드 기반 데스크톱 도구로 시작된 프로젝트이며,
+            v2.2를 마지막으로 시리즈 개발이 종료되었습니다.
+            현재 후속 방향은 ChatChosim으로 이어집니다.
+          </p>
+        </div>
+
+        <div class="archive-note">
+          이전 버전은 보관용으로 제공되며, 현재의 개발 중심은 ChatChosim입니다.
+        </div>
+
+        <div class="grid three">
+          <div class="archive-card">
+            <div class="version-badge">마지막 정식 버전</div>
+            <h3>QueryBot v2.2</h3>
+            <p>
+              QueryBot 시리즈의 마지막 버전입니다.
+              가장 최근의 QueryBot 경험이 필요한 경우 이 버전을 사용할 수 있습니다.
+            </p>
+            <a class="btn btn-secondary" href="#">다운로드</a>
+          </div>
+
+          <div class="archive-card">
+            <div class="version-badge version-old">이전 버전</div>
+            <h3>QueryBot v2.1</h3>
+            <p>
+              이전 안정 버전입니다.
+              필요에 따라 비교용 또는 보관용으로 사용할 수 있습니다.
+            </p>
+            <a class="btn btn-secondary" href="#">다운로드</a>
+          </div>
+
+          <div class="archive-card">
+            <div class="version-badge version-old">초기 시리즈</div>
+            <h3>QueryBot v1.7</h3>
+            <p>
+              QueryBot 초기 시리즈 버전입니다.
+              프로젝트 흐름을 확인하거나 보관용으로 사용할 수 있습니다.
+            </p>
+            <a class="btn btn-secondary" href="#">다운로드</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section-heading">
+          <h2>업데이트 방향</h2>
+          <p>
+            ChatChosim은 QueryBot 이후의 흐름을 잇는 새로운 중심 프로젝트입니다.
+          </p>
+        </div>
+
+        <div class="grid four">
+          <div class="roadmap-card">ChatChosim 기능 확장</div>
+          <div class="roadmap-card">UI 및 사용성 개선</div>
+          <div class="roadmap-card">Windows 데스크톱 환경 강화</div>
+          <div class="roadmap-card">이전 QueryBot 기능 재구성</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="faq">
+      <div class="container">
+        <div class="section-heading">
+          <h2>자주 묻는 질문</h2>
+          <p>
+            현재 사이트의 중심은 ChatChosim이며,
+            QueryBot 시리즈는 아카이브 형태로 유지됩니다.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>ChatChosim은 어떤 프로그램인가요?</summary>
+            <p>
+              ChatChosim은 한국어 중심의 Windows용 개인 AI 데스크톱 프로그램입니다.
+              질문, 정리, 요약, 작업 보조 흐름을 한곳에서 다룰 수 있도록 설계됩니다.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>QueryBot은 더 이상 업데이트되지 않나요?</summary>
+            <p>
+              네. QueryBot 시리즈는 v2.2를 마지막으로 종료되었습니다.
+              현재 프로젝트의 중심은 ChatChosim입니다.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>QueryBot은 여전히 다운로드할 수 있나요?</summary>
+            <p>
+              네. 이전 QueryBot 시리즈는 아카이브 섹션에서 계속 다운로드할 수 있습니다.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>왜 도메인은 querybot.kr인가요?</summary>
+            <p>
+              querybot.kr 도메인을 유지하면서, 현재 사이트의 중심 프로젝트는 ChatChosim으로 전환되었습니다.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Windows에서 사용할 수 있나요?</summary>
+            <p>
+              네. ChatChosim은 Windows 환경을 중심으로 구성된 데스크톱 프로그램입니다.
+            </p>
+          </details>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      © 2026 ChatChosim_3.0 · querybot.kr
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div>
+        <strong>ChatChosim</strong>
+        <p>Windows용 개인 AI 데스크톱</p>
+      </div>
+      <div class="footer-right">
+        <p>이전 QueryBot 시리즈는 아카이브에서 다운로드할 수 있습니다.</p>
+      </div>
     </div>
   </footer>
 </body>

@@ -3,251 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>다운로드 | ChatChosim_3.0</title>
-  <meta name="description" content="ChatChosim_3.0 다운로드 페이지입니다." />
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-      background: linear-gradient(180deg, #f7fbff 0%, #eef3ff 100%);
-      color: #1f2a44;
-      line-height: 1.7;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .container {
-      width: min(1040px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(130, 153, 198, 0.18);
-    }
-
-    .header-inner {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      font-size: 1.22rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #183153;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    nav a {
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-weight: 700;
-      color: #36507a;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    nav a:hover {
-      background: rgba(99, 124, 173, 0.12);
-      transform: translateY(-1px);
-    }
-
-    main {
-      padding: 60px 0 80px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: #eaf2ff;
-      color: #31588f;
-      font-size: 0.92rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      margin: 0 0 14px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: -0.03em;
-      color: #13263f;
-    }
-
-    .lead {
-      margin: 0 0 28px;
-      color: #4c607c;
-      font-size: 1.04rem;
-    }
-
-    .download-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-
-    .download-card,
-    .notice-card {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(148, 171, 215, 0.22);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 12px 30px rgba(78, 104, 158, 0.08);
-    }
-
-    .download-card h2,
-    .notice-card h2 {
-      margin: 0 0 12px;
-      font-size: 1.25rem;
-      color: #183153;
-    }
-
-    .version {
-      font-size: 1.06rem;
-      font-weight: 800;
-      color: #29466f;
-      margin-bottom: 8px;
-    }
-
-    .meta {
-      color: #60728b;
-      font-size: 0.95rem;
-      margin-bottom: 14px;
-    }
-
-    .desc {
-      color: #50647f;
-      margin-bottom: 18px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 0 18px;
-      border-radius: 14px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #7cb7ff 0%, #5f8eff 100%);
-      color: white;
-      box-shadow: 0 10px 24px rgba(95, 142, 255, 0.24);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(95, 142, 255, 0.28);
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 20px;
-      color: #50647f;
-    }
-
-    li + li {
-      margin-top: 10px;
-    }
-
-    footer {
-      padding: 26px 0 40px;
-      color: #6b7c95;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 960px) {
-      .header-inner {
-        flex-direction: column;
-        justify-content: center;
-        padding: 14px 0;
-      }
-
-      nav {
-        justify-content: center;
-      }
-    }
-  </style>
+  <title>다운로드 | ChatChosim</title>
+  <meta name="description" content="ChatChosim 최신 버전과 QueryBot 아카이브 다운로드 정보를 제공합니다." />
+  <link rel="canonical" href="https://querybot.kr/download/" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <header>
-    <div class="container header-inner">
-      <a href="/" class="brand">ChatChosim_3.0</a>
-      <nav>
-        <a href="/">홈</a>
-        <a href="/about">AI 소개</a>
-        <a href="/download">다운로드</a>
-        <a href="/guide">사용법</a>
-        <a href="/changelog">업데이트</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">ChatChosim</a>
+      <nav class="nav">
+        <a href="/about/">소개</a>
+        <a href="/features/">기능</a>
+        <a href="/download/">다운로드</a>
+        <a href="/archive/">QueryBot 아카이브</a>
+        <a href="/changelog/">업데이트</a>
+        <a href="/guide/">가이드</a>
+        <a href="/contribute/">데이터 제안</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <div class="container">
-      <div class="eyebrow">다운로드</div>
-      <h1>버전별 다운로드</h1>
-      <p class="lead">
-        현재 배포 중인 실행 파일 목록이다. 최신 버전을 우선 권장하지만, 필요하면 이전 버전도 받을 수 있다.
-      </p>
-
-      <div class="download-list">
-        <section class="download-card">
-          <div class="version">최신 버전 · v2.2</div>
-          <div class="meta">Windows 실행 파일</div>
-          <div class="desc">
-            현재 메인 페이지에 연결하기 가장 무난한 버전 예시이다.
-            이후 ChatChosim_3.0 이름으로 새 파일을 올리면 링크만 교체하면 된다.
-          </div>
-          <a class="btn" href="/downloads/QueryBot_v2.2.exe" download>v2.2 다운로드</a>
-        </section>
-
-        <section class="download-card">
-          <div class="version">이전 버전 · v2.1</div>
-          <div class="meta">Windows 실행 파일</div>
-          <div class="desc">
-            비교용 또는 이전 버전 확인이 필요한 경우 사용할 수 있다.
-          </div>
-          <a class="btn" href="/downloads/QueryBot_v2.1.exe" download>v2.1 다운로드</a>
-        </section>
-
-        <section class="download-card">
-          <div class="version">이전 버전 · v1.7</div>
-          <div class="meta">Windows 실행 파일</div>
-          <div class="desc">
-            비교적 오래된 버전이다. 현재 구조와 일부 동작이 다를 수 있다.
-          </div>
-          <a class="btn" href="/downloads/QueryBot_v1.7.exe" download>v1.7 다운로드</a>
-        </section>
-
-        <section class="notice-card">
-          <h2>안내 사항</h2>
-          <ul>
-            <li>브라우저나 Windows SmartScreen에서 경고가 보일 수 있다.</li>
-            <li>개인 개발 프로그램 특성상 버전에 따라 기능 구성이 다를 수 있다.</li>
-            <li>이후 새 파일명을 사용할 경우 다운로드 링크도 함께 수정해야 한다.</li>
-          </ul>
-        </section>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Download</span>
+        <h1>다운로드</h1>
+        <p class="lead">현재 개발 중심은 ChatChosim입니다. QueryBot 시리즈는 아카이브로 유지됩니다.</p>
       </div>
-    </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="download-main">
+          <div class="download-card featured">
+            <div class="tag">최신 프로젝트</div>
+            <h3>ChatChosim 최신 버전</h3>
+            <p>
+              현재 개발이 진행 중인 최신 ChatChosim 버전입니다.
+              실제 릴리스가 나오면 아래 링크를 연결하면 됩니다.
+            </p>
+            <ul class="download-list">
+              <li>플랫폼: Windows</li>
+              <li>분류: 개인 AI 데스크톱</li>
+              <li>상태: 최신 프로젝트</li>
+            </ul>
+            <a class="btn btn-primary" href="#">다운로드 링크 연결 예정</a>
+          </div>
+
+          <div class="download-card">
+            <div class="tag tag-gray">레거시 시리즈</div>
+            <h3>QueryBot 시리즈</h3>
+            <p>기존 QueryBot 시리즈는 종료되었지만, 보관용으로 계속 제공됩니다.</p>
+            <ul class="download-list">
+              <li>마지막 버전: QueryBot v2.2</li>
+              <li>상태: 개발 종료</li>
+              <li>제공 형태: 아카이브 다운로드</li>
+            </ul>
+            <a class="btn btn-secondary" href="/archive/">아카이브 보기</a>
+          </div>
+        </div>
+
+        <div class="notice">
+          SmartScreen 경고가 표시될 수 있습니다. 이는 새 실행 파일에서 자주 나타나는 Windows 보안 안내일 수 있습니다.
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <div class="container">
-      © 2026 ChatChosim_3.0 · querybot.kr
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div><strong>ChatChosim</strong><p>Windows용 개인 AI 데스크톱</p></div>
+      <div class="footer-right"><p>이전 QueryBot 시리즈는 아카이브에서 다운로드할 수 있습니다.</p></div>
     </div>
   </footer>
 </body>
